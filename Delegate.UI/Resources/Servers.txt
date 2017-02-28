@@ -1,0 +1,16 @@
+﻿79.110.94.211 EU Killian,
+79.110.94.212 EU Mystel,
+79.110.94.213 EU Yurian,
+79.110.94.214 EU Seren,
+
+208.67.49.28 NA Tempest Reach,
+208.67.49.68 NA Celestial Hills,
+208.67.49.84 NA Ascension Valley,
+208.67.49.93 NA Mount Tyrannas,
+208.67.49.60 NA Fey Forest,
+
+91.225.237.5 RU Кайа,
+91.225.237.6 RU Велика,
+
+183.110.3.6 KR 아룬의 영광,
+183.110.3.7 KR 카이아의 가호

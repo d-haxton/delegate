@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Delegate.UI.View.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Delegate.UI.View"
+             DataContext="{Binding SettingsViewModel, Source={StaticResource Locator}}"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Label FontSize="14.667" FontWeight="Bold">Opacity %</Label>
+                <Slider Value="{Binding OpacityValue}" Width="{Binding Path=ActualWidth, ElementName=ParentPanel}" Height="25" Style="{DynamicResource FlatSlider}" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridDamage}" OnLabel="Showing Damage" OffLabel="Hiding Damage" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridDamagePercent}" OnLabel="Showing Damage %" OffLabel="Hiding Damage %" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridPlayer}" OnLabel="Showing Player" OffLabel="Hiding Player" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridClass}" OnLabel="Showing Class" OffLabel="Hiding Class" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridTarget}" OnLabel="Showing Target" OffLabel="Hiding Target" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridDps}" OnLabel="Showing DPS" OffLabel="Hiding DPS" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridCritPercent}" OnLabel="Showing Crit %" OffLabel="Hiding Crit %" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridHealing}" OnLabel="Showing Healing" OffLabel="Hiding Healing" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridHps}" OnLabel="Showing HPS" OffLabel="Hiding HPS" />
+                <controls:ToggleSwitch IsChecked="{Binding DataGridLastActive}" OnLabel="Showing Last Active" OffLabel="Hiding Last Active" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
