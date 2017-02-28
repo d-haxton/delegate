@@ -5,10 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Delegate.UI.View"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         mc:Ignorable="d"
         Title="DetailedView" Height="300" Width="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding Breakdown}" IsReadOnly="True"/>
+        <dragablz:TabablzControl Margin="8">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="Grid Breakdown" IsSelected="True">
+                <DataGrid ItemsSource="{Binding Breakdown}" IsReadOnly="True"/>
+            </TabItem>
+            <TabItem Header="Pie Chart Breakdown">
+                <ContentControl x:Name="pieChartBreakdown" />
+            </TabItem>
+        </dragablz:TabablzControl>
     </Grid>
 </controls:MetroWindow>

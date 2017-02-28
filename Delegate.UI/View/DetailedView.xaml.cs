@@ -8,7 +8,7 @@ namespace Delegate.UI.View
     /// </summary>
     public partial class DetailedView
     {
-        public DetailedView(IDelegateBreakdown breakdown)
+        public DetailedView(IDelegateBreakdown breakdown, IDelegateCombatControl combatControl)
         {
             Breakdown = new List<ISkillResult>();
             foreach (var history in breakdown.History)
@@ -16,6 +16,7 @@ namespace Delegate.UI.View
                 Breakdown.Add(history);
             }
             InitializeComponent();
+            pieChartBreakdown.Content = new PieChartViewControl(combatControl);
         }
 
         public List<ISkillResult> Breakdown { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Delegate.Meter.events;
 using Delegate.Meter.interfaces;
+using ReactiveUI;
 
 namespace Delegate.Meter.meter
 {
@@ -10,8 +11,8 @@ namespace Delegate.Meter.meter
         public event EventHandler<CombatUpdatedArgs> CombatUpdated = delegate { }; 
         private const int CombatTimer = 10;
         private DateTime LastUpdated { get; set; }
-        public ObservableCollection<IDelegateBreakdown> CurrentCombat { get; set; }
-        public ObservableCollection<ObservableCollection<IDelegateBreakdown>> CombatHistory { get; }
+        public ReactiveList<IDelegateBreakdown> CurrentCombat { get; set; }
+        public ReactiveList<ReactiveList<IDelegateBreakdown>> CombatHistory { get; }
 
         public void CombatCheck()
         {
@@ -23,7 +24,7 @@ namespace Delegate.Meter.meter
                     breakdown.IsFinished = true;
                 }
 
-                var newDict = new ObservableCollection<IDelegateBreakdown>();
+                var newDict = new ReactiveList<IDelegateBreakdown>();
                 CombatHistory.Add(newDict);
                 CurrentCombat = newDict;
             }
@@ -38,8 +39,11 @@ namespace Delegate.Meter.meter
         public DelegateCombatControl()
         {
             LastUpdated = DateTime.MinValue;
-            CurrentCombat = new ObservableCollection<IDelegateBreakdown>();
-            CombatHistory = new ObservableCollection<ObservableCollection<IDelegateBreakdown>> {CurrentCombat};
+            CurrentCombat = new ReactiveList<IDelegateBreakdown>()
+            {
+                ChangeTrackingEnabled = true
+            };
+            CombatHistory = new ReactiveList<ReactiveList<IDelegateBreakdown>> {CurrentCombat};
         }
     }
 }

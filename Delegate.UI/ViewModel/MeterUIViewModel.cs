@@ -12,7 +12,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace Delegate.UI.ViewModel
 {
-    public class MeterUIViewModel : TypedViewModelBase<MeterUiModel>
+    public class MeterUIViewModel 
     {
         private readonly IMeterUiModel _model;
         private readonly ISettingsWrapper _wrapper;
@@ -20,7 +20,7 @@ namespace Delegate.UI.ViewModel
         /// <summary>
         ///     Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MeterUIViewModel(IMeterUiModel model, ISettingsWrapper wrapper) : base(model as MeterUiModel)
+        public MeterUIViewModel(IMeterUiModel model, ISettingsWrapper wrapper)
         {
             _model = model;
             _wrapper = wrapper;
@@ -60,8 +60,8 @@ namespace Delegate.UI.ViewModel
             var alpha = _wrapper.OpacityValue;
             var color = new Color {A = (byte) alpha, R = 0, B = 0, G = 0};
             DataGridColor = color;
-            RaisePropertyChanged(() => DataGridColor);
-            RaisePropertyChanged(() => AlphaInt);
+            //RaisePropertyChanged(() => DataGridColor);
+            //RaisePropertyChanged(() => AlphaInt);
         }
 
         private void OnSaveEvent(object sender, EventArgs e)
@@ -75,17 +75,17 @@ namespace Delegate.UI.ViewModel
             settingsWindow.Show();
         }
 
-        protected override void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "UpdatedCounter")
-            {
-                RaisePropertyChanged("Breakdown");
-                RaisePropertyChanged(() => Breakdown);
-            }
-            else
-            {
-                RaisePropertyChanged(e.PropertyName);
-            }
-        }
+        //protected override void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == "UpdatedCounter")
+        //    {
+        //        RaisePropertyChanged("Breakdown");
+        //        RaisePropertyChanged(() => Breakdown);
+        //    }
+        //    else
+        //    {
+        //        RaisePropertyChanged(e.PropertyName);
+        //    }
+        //}
     }
 }

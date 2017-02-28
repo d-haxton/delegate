@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Controls;
 using Delegate.Meter.events;
 using Delegate.Meter.interfaces;
+using Delegate.Meter.meter;
 using Delegate.UI.FodyPropertyChanged;
 using Delegate.UI.interfaces;
 using Delegate.UI.View;
@@ -13,7 +14,7 @@ using GalaSoft.MvvmLight.Threading;
 
 namespace Delegate.UI.Model
 {
-    public class MeterUiModel : BaseNotifyingModel, IMeterUiModel
+    public class MeterUiModel : IMeterUiModel
     {
         private readonly IDelegateCombatControl _combatControl;
 
@@ -32,8 +33,8 @@ namespace Delegate.UI.Model
             Messenger.Default.Register<SelectionChangedEventArgs>(this, UpdatedIndex);
             Messenger.Default.Register<DataGrid>(this, OnDataGridClick);
 
-            // var breakdown = new DelegateBreakdown {Source = "Me you fuck"};
-            // Breakdown.Add(breakdown);
+            var breakdown = new DelegateBreakdown { Source = "Me you fuck" };
+            Breakdown.Add(breakdown);
         }
 
         private Dictionary<string, ObservableCollection<IDelegateBreakdown>> HistoryList { get; }
@@ -47,7 +48,7 @@ namespace Delegate.UI.Model
         private void OnDataGridClick(DataGrid args)
         {
             var breakdown = args.CurrentItem as IDelegateBreakdown;
-            var detailed = new DetailedView(breakdown);
+            var detailed = new DetailedView(breakdown, _combatControl);
             detailed.Show();
         }
 
@@ -114,7 +115,7 @@ namespace Delegate.UI.Model
 
                 var titleForHistory = $"{GetLast(listOfTimes)} {MostCommonString(listOfTargets)}";
                 HistoryBreakdown.Insert(0, titleForHistory);
-                HistoryList[titleForHistory] = history;
+                HistoryList[titleForHistory] = new ObservableCollection<IDelegateBreakdown>(history.ToList());
 
                 listOfTargets.Clear();
             }
